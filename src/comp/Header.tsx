@@ -14,8 +14,8 @@ export function Header(props: { resetQuestions: () => void }) {
   return (
     <header>
       <nav>
-        <ul className="flex justify-between px-10 py-2 border black b-y">
-          <li className="">
+        <ul className="flex flex-sb px-10 py-2 border black b-y">
+          <li>
             <h1 className="font-bold">SUIP</h1>
           </li>
           <li>
@@ -24,7 +24,7 @@ export function Header(props: { resetQuestions: () => void }) {
               Inicio
             </button>
           </li>
-          <li className="md:hidden">
+          <li className="only-mobile">
             <Mobile />
           </li>
         </ul>
@@ -36,7 +36,7 @@ export function Header(props: { resetQuestions: () => void }) {
 function Mobile() {
   return (
     <Sheet>
-      <SheetTrigger asChild className="md:bg-emerald-500">
+      <SheetTrigger asChild>
         <AlignJustify />
       </SheetTrigger>
       <SheetContent>
