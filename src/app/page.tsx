@@ -1,7 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 import { Answer, QuestionNode } from "./types";
 import { QUESTIONS } from "./data";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 // npm run dev
 export default function Home() {
@@ -70,13 +72,14 @@ export default function Home() {
                 {a.farewell && <p className="mt-5">{a.farewell}</p>}
                 {a.isFinal && (
                   <div className="mt-5 grid place-items-center">
-                    <button
+                    <Button
+                      size="sm"
                       className="mt-5 border rounded-md py-2 px-6 text-neutral-50 bg-indigo-500 hover:bg-indigo-600"
                       onClick={() => setQuestions(QUESTIONS)}
                     >
                       <span className="mr-2 ">🏠</span>
                       Regresar Inicio
-                    </button>
+                    </Button>
                   </div>
                 )}
               </li>
