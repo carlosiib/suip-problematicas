@@ -1,9 +1,9 @@
 "use client";
-import React, { useState, useTransition } from "react";
+import React, { useState } from "react";
 import { Answer, QuestionNode } from "./types";
 import { QUESTIONS } from "./data";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Header } from "@/comp/Header";
 
 // npm run dev
 export default function Home() {
@@ -37,19 +37,14 @@ export default function Home() {
     console.log("all", questions);
   }
 
+  function resetQuestions() {
+    return setQuestions(QUESTIONS);
+  }
+
   return (
     <div>
-      <header>
-        <nav>
-          <ul className="flex flex-wrap justify-between px-10 py-2 border black b-y">
-            <li className="font-bold">Problematicas</li>
-            <li>
-              <button onClick={() => setQuestions(QUESTIONS)}>Incio</button>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <section className="px-10 mt-4">
+      <Header resetQuestions={resetQuestions} />
+      <section className="px-10 mt-4 ">
         <ul className="max-w-[500px] mx-auto flex flex-col gap-2">
           {Array.isArray(questions) &&
             questions.every((item) => "isFinal" in item || "message" in item) &&
