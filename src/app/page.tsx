@@ -42,7 +42,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <>
       <Header resetQuestions={resetQuestions} />
       <section className="px-10 mt-4 ">
         <ul className="max-w-[500px] mx-auto flex flex-col gap-2">
@@ -93,6 +93,6 @@ export default function Home() {
             ))}
         </ul>
       </section>
-    </div>
+    </>
   );
 }
