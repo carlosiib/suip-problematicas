@@ -10,7 +10,7 @@ export default function Home() {
   const [questions, setQuestions] = useState<QuestionNode[] | Answer[]>(
     QUESTIONS
   );
-  const [tabs, setTabs] = useState();
+  const [tabs, setTabs] = useState(false);
   // const [c, setC] = useState(0);
 
   const count = useRef<number>(0);
@@ -29,10 +29,11 @@ export default function Home() {
       );
       if (question) {
         setQuestions(question.answers);
-
-        // console.log(count.current);
-        return;
       }
+      if (count.current >= 1) {
+        setTabs(true);
+      }
+      return;
     }
 
     // if (type === "answer") {
@@ -54,13 +55,44 @@ export default function Home() {
   function recursiveQuestion(id: string) {
     const all = questions.filter((question) => question.id == id);
     console.log("id recursive", id, all);
+    const total = recursiveIndicator(all);
+    console.log(total);
+  }
+
+  function recursiveIndicator(data: any, count = 0) {
+    function recursive(node: any): any {
+      if (!node || typeof node !== "object") return null;
+
+      if (Array.isArray(node)) {
+        for (const item of node) {
+          const result = recursive(item);
+          if (result) return result;
+        }
+      } else {
+        count++;
+
+        if (node.isFinal) {
+          return { finalNode: node, count }; // final node finded
+        }
+
+        if (node.answers) {
+          const result = recursive(node.answers);
+          if (result) return result;
+        }
+      }
+
+      return null;
+    }
+
+    const result = recursive(data);
+    return result || { finalNode: null, count };
   }
 
   return (
     <>
       <Header resetQuestions={resetQuestions} />
-      {count.current !== 0 && <p>{count.current}</p>}
       <section className="px-10 mt-4 ">
+        {count.current >= 1 && tabs && <p className="mb-5">show tabs</p>}
         <ul className="max-w-[500px] mx-auto flex flex-col gap-5">
           {Array.isArray(questions) &&
             questions.every((item) => "isFinal" in item || "message" in item) &&
