@@ -77,10 +77,19 @@ export default function Home() {
                     <p className="mb-5">
                       <span className="mr-2 ">🔚</span> Fin de pregunta
                     </p>
-                    <p>{a.question}</p>
+                    <p>
+                      {" "}
+                      <span className="mr-2">📄</span>
+                      {a.question}
+                    </p>
                   </div>
                 )}
-                {a.farewell && <p className="mt-5">{a.farewell}</p>}
+                {a.farewell && (
+                  <p className="mt-5">
+                    <span className="mr-2">✔</span>
+                    {a.farewell}
+                  </p>
+                )}
                 {a.isFinal && (
                   <div className="mt-5 grid place-items-center">
                     <Button
@@ -102,7 +111,10 @@ export default function Home() {
             ) &&
             (questions as QuestionNode[]).map((data: any) => (
               <li key={data.id}>
-                <button onClick={() => handleClick(data.id, "question")}>
+                <button
+                  className="text-start"
+                  onClick={() => handleClick(data.id, "question")}
+                >
                   <span className="mr-2 ">👉</span> {data.question}
                 </button>
                 {data?.examples && (

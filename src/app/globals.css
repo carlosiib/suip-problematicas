@@ -11,6 +11,11 @@
   list-style-type: circle;
   padding: 1rem;
 }
+
+summary {
+  cursor: pointer;
+}
+
 summary::marker {
   content: "";
 }
