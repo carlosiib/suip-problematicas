@@ -1,9 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@plugin "@tailwindcss/typography";
 
 .flex-sb {
   justify-content: space-between;
+}
+
+.examples-container ul {
+  list-style-type: circle;
+  padding: 1rem;
+}
+summary::marker {
+  content: "";
 }
 
 @layer base {

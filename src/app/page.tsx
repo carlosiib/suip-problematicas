@@ -61,7 +61,7 @@ export default function Home() {
       <Header resetQuestions={resetQuestions} />
       {count.current !== 0 && <p>{count.current}</p>}
       <section className="px-10 mt-4 ">
-        <ul className="max-w-[500px] mx-auto flex flex-col gap-2">
+        <ul className="max-w-[500px] mx-auto flex flex-col gap-5">
           {Array.isArray(questions) &&
             questions.every((item) => "isFinal" in item || "message" in item) &&
             (questions as Answer[]).map((a: any) => (
@@ -105,6 +105,12 @@ export default function Home() {
                 <button onClick={() => handleClick(data.id, "question")}>
                   <span className="mr-2 ">👉</span> {data.question}
                 </button>
+                {data?.examples && (
+                  <div
+                    className="_prose mt-4 examples-container"
+                    dangerouslySetInnerHTML={{ __html: data.examples }}
+                  ></div>
+                )}
               </li>
             ))}
         </ul>
