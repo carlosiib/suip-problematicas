@@ -11,5 +11,6 @@ export type QuestionNode = {
   id: string;
   question: string;
   type: "question";
+  examples?: string;
   answers: Answer[];
 };
