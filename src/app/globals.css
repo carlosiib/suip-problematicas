@@ -18,6 +18,7 @@ summary {
 
 summary::marker {
   content: "";
+  color: transparent;
 }
 
 @layer base {
